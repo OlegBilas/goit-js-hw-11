@@ -30,19 +30,16 @@ function onSubmitForm(e) {
   fetcherOfImages
     .getImages(query)
     .then(({ data }) => {
-      if (data.hints.length === 0) {
+      if (data.hits.length === 0) {
         return Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
       }
       if (fetcherOfImages.page === 1) {
-        galleryRef.innerHTML = renderGallery(data.hints);
+        galleryRef.innerHTML = renderGallery(data.hits);
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       } else {
-        galleryRef.insertAdjacentElement(
-          'beforeend',
-          renderGallery(data.hints)
-        );
+        galleryRef.insertAdjacentElement('beforeend', renderGallery(data.hits));
         simpleLightbox.refresh();
       }
     })

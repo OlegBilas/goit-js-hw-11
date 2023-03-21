@@ -19,8 +19,6 @@ export class FetcherOfImages {
 
     const options = {
       method: 'get',
-      // url: 'https://pixabay.com/api/',
-      // headers: { 'X-Requested-With': 'XMLHttpRequest' },
       params: {
         key: '34570965-f4c02bf2bd7f36d8810cb4ca2',
         q: this.query,
@@ -29,15 +27,9 @@ export class FetcherOfImages {
         safesearch: true,
         page: this.page,
         per_page: IMADES_PER_PAGE,
-        // responseType: 'json', // default
-        // responseEncoding: 'utf8', // default
       },
     };
-    try {
-      const response = await axios.get(URL, options);
-      return response;
-    } catch (response) {
-      console.log(response.statusText);
-    }
+    const response = await axios.get(URL, options);
+    return response;
   }
 }

@@ -43,20 +43,23 @@ async function fetchImages() {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       } else {
         galleryRef.insertAdjacentHTML('beforeend', renderGallery(data.hits));
+        setScrollbehavior();
       }
-      simpleLightbox.refresh();
-      setScrollbehavior();
     })
-    .catch(error => Notify.failure('Something went wrong. Try again!'));
+    .catch(error => {
+      if (error.response.status === 400) {
+        Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
+      } else {
+        Notify.failure('Something went wrong. Try again!');
+      }
+    });
+  simpleLightbox.refresh();
 }
 
 function initializeSimpleLightbox() {
-  return new SimpleLightbox('.gallery a', {
-    captionSelector: 'p',
-    //   captionsData: 'title',
-    captionType: 'text',
-    captionClass: 'item-info',
-  });
+  return new SimpleLightbox('.gallery a');
 }
 
 function renderGallery(images) {
@@ -85,8 +88,8 @@ function renderGallery(images) {
                             </p>
                             <p class="info-item">
                             <b>Comments</b>
-                            </p>
                             ${comments}
+                            </p>
                             <p class="info-item">
                             <b>Downloads</b>
                             ${downloads}

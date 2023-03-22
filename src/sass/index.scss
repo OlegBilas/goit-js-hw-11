@@ -22,10 +22,9 @@ body {
   opacity: 0;
 }
 
-// :root {
-//   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-//   --animation-duration: 250ms;
-// }
+img {
+  display: block;
+}
 
 .gallery {
   margin-top: 66px;
@@ -70,14 +69,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 20%;
-  &:nth-child(3),
-  &:nth-child(4) {
-    flex-grow: 2;
-  }
-  //   &:nth-child(1),
-  //   &:nth-child(2) {
-  //     flex-shrink: 0.5;
-  //   }
 }
 .info-item {
   flex-basis: calc((100% - 36px) / 4);

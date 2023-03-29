@@ -18,7 +18,6 @@ export class FetcherOfImages {
     }
 
     const options = {
-      method: 'get',
       params: {
         key: '34570965-f4c02bf2bd7f36d8810cb4ca2',
         q: this.query,
